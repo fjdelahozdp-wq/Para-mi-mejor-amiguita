@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Verónica ❤️</title>
+
+    <!-- Confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 20% 20%, #fff8fb 0%, transparent 30%), radial-gradient(circle at 80% 70%, #ffd6e5 0%, transparent 35%), linear-gradient(135deg, #ffeef5, #ffd8e5);
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           FONDO
+        ===================================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: #ff8fab;
+            font-size: 25px;
+            opacity: 0;
+            animation: subir 9s linear infinite;
+            filter: drop-shadow(0 0 7px rgba(255, 105, 145, .4));
+        }
+
+            .heart:nth-child(1) {
+                left: 8%;
+                animation-delay: 0s;
+            }
+
+            .heart:nth-child(2) {
+                left: 28%;
+                animation-delay: 3s;
+                font-size: 30px;
+            }
+
+            .heart:nth-child(3) {
+                left: 52%;
+                animation-delay: 1s;
+            }
+
+            .heart:nth-child(4) {
+                left: 75%;
+                animation-delay: 5s;
+                font-size: 32px;
+            }
+
+            .heart:nth-child(5) {
+                left: 90%;
+                animation-delay: 2s;
+                font-size: 20px;
+            }
+
+        @keyframes subir {
+
+            0% {
+                transform: translateY(0) rotate(0deg) scale(.7);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .65;
+            }
+
+            80% {
+                opacity: .65;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           PORTADA
+        ===================================================== */
+
+        .portada {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            position: relative;
+            z-index: 10;
+            transition: opacity 1s ease, transform 1s ease, filter 1s ease;
+        }
+
+            .portada.transicion-salida {
+                opacity: 0;
+                transform: scale(.9) translateY(-50px);
+                filter: blur(10px);
+                pointer-events: none;
+            }
+
+        .tarjeta {
+            width: 100%;
+            max-width: 620px;
+            min-height: 680px;
+            background: rgba(255, 250, 252, .94);
+            backdrop-filter: blur(15px);
+            border-radius: 38px;
+            padding: 45px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, .9);
+            box-shadow: 0 30px 80px rgba(160, 60, 100, .25), 0 0 50px rgba(255, 150, 180, .25);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .tarjeta::before {
+                content: "";
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                background: rgba(255, 180, 200, .25);
+                border-radius: 50%;
+                filter: blur(40px);
+                top: -150px;
+                left: -100px;
+            }
+
+            .tarjeta::after {
+                content: "";
+                position: absolute;
+                width: 250px;
+                height: 250px;
+                background: rgba(255, 210, 220, .3);
+                border-radius: 50%;
+                filter: blur(40px);
+                bottom: -130px;
+                right: -80px;
+            }
+
+        .contenido-tarjeta {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banderines {
+            font-size: 30px;
+            letter-spacing: 7px;
+            animation: respirar 2.5s ease-in-out infinite;
+        }
+
+        @keyframes respirar {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        .small-title {
+            margin-top: 35px;
+            color: #ff7096;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            animation: entrada .9s ease both;
+        }
+
+        h1 {
+            margin: 18px 0;
+            font-size: clamp(50px, 12vw, 92px);
+            line-height: .9;
+            color: #ff6f91;
+            text-shadow: 4px 4px 0 #ffd1dd, 0 0 20px rgba(255, 112, 150, .2);
+            animation: entrada 1.2s .15s ease both;
+        }
+
+        .nombre {
+            font-size: clamp(38px, 9vw, 68px);
+            color: #5d4057;
+            font-weight: 800;
+            animation: entrada 1.3s .3s ease both;
+        }
+
+        .globo {
+            font-size: 90px;
+            margin-top: 15px;
+            animation: entrada 1.3s .45s ease both, flotar 3.5s 1.7s ease-in-out infinite;
+            filter: drop-shadow(0 12px 15px rgba(255, 100, 145, .25));
+        }
+
+        @keyframes entrada {
+
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes flotar {
+
+            0%, 100% {
+                transform: translateY(0) rotate(-4deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(4deg);
+            }
+        }
+
+
+        /* =====================================================
+           BOTÓN
+        ===================================================== */
+
+        .boton {
+            position: relative;
+            z-index: 5;
+            margin-top: 20px;
+            padding: 17px 35px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient( 135deg, #ff83a4, #ff4f80 );
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(255, 80, 125, .35);
+            transition: .35s ease;
+            animation: entrada 1.3s .6s ease both;
+        }
+
+            .boton:hover {
+                transform: translateY(-5px) scale(1.06);
+                box-shadow: 0 18px 35px rgba(255, 80, 125, .45);
+            }
+
+            .boton:active {
+                transform: scale(.97);
+            }
+
+
+        /* =====================================================
+           CONTENIDO
+        ===================================================== */
+
+        #contenido-principal {
+            display: none;
+            opacity: 0;
+            position: relative;
+            z-index: 5;
+            transition: opacity 1.2s ease;
+        }
+
+            #contenido-principal.activo {
+                display: block;
+                opacity: 1;
+            }
+
+
+        /* =====================================================
+           SECCIONES
+        ===================================================== */
+
+        section {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 100vh;
+            margin: auto;
+            padding: 100px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            color: #e95d82;
+            font-size: clamp(32px, 6vw, 45px);
+            margin-bottom: 45px;
+            font-weight: 800;
+            text-shadow: 2px 2px 0 white;
+        }
+
+
+        /* =====================================================
+           REVEAL DE SECCIONES
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(70px) scale(.94);
+            filter: blur(5px);
+            transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1), filter 1s ease;
+        }
+
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+
+
+        /* =====================================================
+           MENSAJE
+        ===================================================== */
+
+        .mensaje {
+            position: relative;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 45px;
+            border: 2px solid #ffd3df;
+            box-shadow: 0 25px 60px rgba(120,50,80,.15);
+            overflow: hidden;
+        }
+
+            .mensaje::before {
+                content: "♡";
+                position: absolute;
+                top: -20px;
+                right: 25px;
+                font-size: 110px;
+                color: rgba(255,112,150,.08);
+            }
+
+            .mensaje h2 {
+                text-align: center;
+                color: #ff7096;
+                font-size: 30px;
+                margin-bottom: 28px;
+            }
+
+        .mensaje-texto {
+            min-height: 250px;
+            padding: 30px;
+            border-radius: 22px;
+            background: linear-gradient( 135deg, #fff8fa, #fff0f5 );
+            border: 2px dashed #ffabc1;
+            font-size: 18px;
+            line-height: 1.9;
+            color: #4d4d4d;
+            box-shadow: inset 0 0 25px rgba(255,150,180,.12);
+        }
+
+
+        /* =====================================================
+           GALERÍA
+        ===================================================== */
+
+        .galeria-section {
+            position: relative;
+        }
+
+        .subtitulo-galeria {
+            text-align: center;
+            color: #8b6876;
+            margin-top: -25px;
+            margin-bottom: 45px;
+            font-size: 17px;
+        }
+
+        .fotos {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .foto {
+            width: 100%;
+            background: white;
+            padding: 12px;
+            border-radius: 22px;
+            box-shadow: 0 15px 35px rgba(100,50,70,.16);
+            overflow: hidden;
+            transition: transform .5s ease, box-shadow .5s ease;
+        }
+
+            .foto:hover {
+                transform: translateY(-10px) rotate(0deg) scale(1.03);
+                box-shadow: 0 25px 45px rgba(100,50,70,.22);
+            }
+
+            .foto:nth-child(odd) {
+                transform: rotate(-1.5deg);
+            }
+
+            .foto:nth-child(even) {
+                transform: rotate(1.5deg);
+            }
+
+                .foto:nth-child(odd):hover,
+                .foto:nth-child(even):hover {
+                    transform: translateY(-10px) rotate(0deg) scale(1.03);
+                }
+
+            .foto img {
+                width: 100%;
+                height: 320px;
+                object-fit: contain;
+                background: #fff0f5;
+                border-radius: 16px;
+                display: block;
+            }
+
+            .foto p {
+                text-align: center;
+                padding: 15px 5px 8px;
+                color: #777;
+                font-size: 15px;
+            }
+
+
+            /* =====================================================
+           ANIMACIÓN INDIVIDUAL DE FOTOS
+        ===================================================== */
+
+            .foto.reveal:nth-child(1) {
+                transition-delay: .05s;
+            }
+
+            .foto.reveal:nth-child(2) {
+                transition-delay: .2s;
+            }
+
+            .foto.reveal:nth-child(3) {
+                transition-delay: .35s;
+            }
+
+            .foto.reveal:nth-child(4) {
+                transition-delay: .5s;
+            }
+
+            .foto.reveal:nth-child(5) {
+                transition-delay: .65s;
+            }
+
+            .foto.reveal:nth-child(6) {
+                transition-delay: .8s;
+            }
+
+
+        /* =====================================================
+           SECCIÓN ESPECIAL
+        ===================================================== */
+
+        .especial {
+            position: relative;
+            text-align: center;
+            padding: 65px 35px;
+            border-radius: 40px;
+            background: linear-gradient( 135deg, rgba(255,255,255,.97), rgba(255,232,241,.97) );
+            border: 2px solid #ffd0dc;
+            box-shadow: 0 25px 65px rgba(120,50,80,.18);
+            overflow: hidden;
+        }
+
+            .especial::before,
+            .especial::after {
+                content: "♡";
+                position: absolute;
+                font-size: 150px;
+                color: rgba(255,112,150,.07);
+            }
+
+            .especial::before {
+                left: -40px;
+                top: -70px;
+            }
+
+            .especial::after {
+                right: -40px;
+                bottom: -80px;
+            }
+
+        .corazon {
+            font-size: 82px;
+            display: inline-block;
+            animation: latido 1.5s infinite;
+            filter: drop-shadow( 0 0 15px rgba(233,93,130,.35) );
+        }
+
+        @keyframes latido {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.12);
+            }
+        }
+
+        .especial h2 {
+            color: #e95d82;
+            margin: 22px 0;
+            font-size: 30px;
+        }
+
+        .especial p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: #555;
+            max-width: 700px;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           FINAL
+        ===================================================== */
+
+        .final {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .final-corazones {
+            font-size: 55px;
+            letter-spacing: 10px;
+            margin-bottom: 25px;
+            animation: respirar 2s infinite;
+        }
+
+        .final h2 {
+            font-size: clamp(35px, 7vw, 58px);
+            color: #ff7096;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 white, 0 0 20px rgba(255,112,150,.2);
+        }
+
+        .final p {
+            font-size: 19px;
+            color: #666;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .firma {
+            margin-top: 40px;
+            padding: 14px 25px;
+            border-radius: 50px;
+            background: rgba(255,255,255,.7);
+            border: 1px solid #ffd0dc;
+            color: #777;
+            font-size: 18px;
+            box-shadow: 0 10px 25px rgba(100,50,70,.08);
+        }
+
+            .firma strong {
+                color: #e95d82;
+                font-size: 21px;
+            }
+
+
+        /* =====================================================
+           MÓVIL
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            .tarjeta {
+                min-height: 600px;
+                padding: 35px 20px;
+                border-radius: 30px;
+            }
+
+            .banderines {
+                font-size: 22px;
+            }
+
+            section {
+                min-height: 100vh;
+                padding: 80px 15px;
+            }
+
+            .mensaje {
+                padding: 25px 18px;
+            }
+
+            .mensaje-texto {
+                padding: 20px;
+                font-size: 17px;
+                line-height: 1.8;
+            }
+
+            .fotos {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .foto img {
+                height: auto;
+                max-height: 450px;
+                min-height: 250px;
+            }
+
+            .especial {
+                padding: 50px 22px;
+            }
+
+                .especial p {
+                    font-size: 17px;
+                }
+
+            .final {
+                min-height: 80vh;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CORAZONES DEL FONDO
+    ===================================================== -->
+
+    <div class="background">
+
+        <div class="heart">♥</div>
+        <div class="heart">♡</div>
+        <div class="heart">♥</div>
+        <div class="heart">♡</div>
+        <div class="heart">♥</div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PORTADA
+    ===================================================== -->
+
+    <div class="portada" id="portada">
+
+        <div class="tarjeta">
+
+            <div class="contenido-tarjeta">
+
+                <div class="banderines">
+                    🎀 🎈 🎀 🎈 🎀
+                </div>
+
+
+                <div class="small-title">
+                    PARA MI MEJOR AMIGA
+                </div>
+
+
+                <h1>
+                    Feliz<br>
+                    Cumpleaños
+                </h1>
+
+
+                <div class="nombre">
+                    Verónica ❤️
+                </div>
+
+
+                <div class="globo">
+                    🎈
+                </div>
+
+            </div>
+
+
+            <button class="boton"
+                    onclick="abrirRegalo()">
+
+                Tengo algo para ti 💌
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ===================================================== -->
+
+    <div id="contenido-principal">
+
+
+        <!-- =================================================
+             MENSAJE
+        ================================================= -->
+
+        <section id="mensaje"
+                 class="reveal">
+
+            <h2 class="titulo-seccion">
+                Un mensaje para ti 💗
+            </h2>
+
+
+            <div class="mensaje">
+
+                <h2>
+                    Verónica...
+                </h2>
+
+
+                <div class="mensaje-texto">
+
+                    ¡Feliz cumpleaños, mejor amiga! 💛
+                    Hoy es un día súper especial porque
+                    celebramos la vida de una persona
+                    indispensable en mi mundo.
+
+                    <br><br>
+
+                    Quería aprovechar para decirte lo mucho
+                    que te quiero y lo importante que te has
+                    vuelto para mí.
+
+                    Desde el momento en que empezamos a
+                    acercarnos más, sentí de inmediato una
+                    conexión única, una gran confianza y un
+                    cariño sincero hacia ti que no se encuentra
+                    fácilmente.
+
+                    <br><br>
+
+                    Quiero que nunca lo olvides: ante cualquier
+                    obstáculo, duda o problema que estés
+                    pasando, siempre voy a estar a tu lado
+                    para apoyarte.
+
+                    Para mí eres una prioridad, mi hermanita
+                    y mi mejor amiga de verdad.
+
+                    Te quiero y te amo un montón.
+
+                    <br><br>
+
+                    Deseo con todo mi corazón que pases un día
+                    hermoso, lleno de alegrías, y que este nuevo
+                    año de vida te traiga muchas bendiciones.
+
+                    🎂✨💖
+
+                    <br><br>
+
+                    Feliz cumpleaños, Verónica. 💛
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GALERÍA
+        ================================================= -->
+
+        <section class="galeria-section reveal">
+
+            <h2 class="titulo-seccion">
+                Nuestros recuerdos 📸
+            </h2>
+
+
+            <p class="subtitulo-galeria">
+                Porque algunos momentos merecen quedarse
+                para siempre. ❤️
+            </p>
+
+
+            <div class="fotos">
+
+
+                <!-- FOTO 1 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto1.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+1+❤️';">
+
+                    <p>
+                        Un recuerdo que guardo con cariño ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOTO 2 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto2.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+2+✨';">
+
+                    <p>
+                        Uno de tantos momentos juntos ✨
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOTO 3 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto3.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+3+🫶';">
+
+                    <p>
+                        Otro momento especial 🫶
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOTO 4 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto4.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+4+❤️';">
+
+                    <p>
+                        Un momento que siempre recordaré ❤️
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOTO 5 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto5.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+5+💕';">
+
+                    <p>
+                        🧡
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOTO 6 -->
+
+                <div class="foto reveal">
+
+                    <img src="foto6.jpg"
+                         alt="Nuestro recuerdo"
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/ffe0eb/e95d82?text=Foto+6+💗';">
+
+                    <p>
+                        Y los que todavía nos faltan. 💗
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECCIÓN ESPECIAL
+        ================================================= -->
+
+        <section class="reveal">
+
+            <div class="especial">
+
+                <div class="corazon">
+                    💗
+                </div>
+
+
+                <h2>
+                    Porque eres importante para mí
+                </h2>
+
+
+                <p>
+
+                    Hay personas que llegan a nuestra vida
+                    y terminan convirtiéndose en parte de
+                    nuestros mejores recuerdos.
+
+                    <br><br>
+
+                    Y tú eres una de esas personas.
+
+                    <br><br>
+
+                    Gracias por cada risa, cada conversación,
+                    cada momento y cada recuerdo que hemos
+                    compartido.
+
+                    <br><br>
+
+                    Espero que podamos seguir creando
+                    muchos recuerdos más.
+
+                    ❤️
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FINAL
+        ================================================= -->
+
+        <div class="final reveal">
+
+
+            <div class="final-corazones">
+                💕 ❤️ 💕
+            </div>
+
+
+            <h2>
+                Feliz cumpleaños, Verónica 🎂
+            </h2>
+
+
+            <p>
+
+                Espero que este pequeño detalle te recuerde
+                lo especial que eres para mí.
+
+                <br><br>
+
+                Que nunca te falten motivos para sonreír,
+                personas que te quieran y momentos que
+                quieras guardar para siempre.
+
+            </p>
+
+
+            <div class="firma">
+
+                Hecho con mucho cariño por
+                <strong>Junior ❤️</strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           ABRIR EL REGALO
+        ================================================= */
+
+        function abrirRegalo() {
+
+            const portada =
+                document.getElementById("portada");
+
+            const contenido =
+                document.getElementById(
+                    "contenido-principal"
+                );
+
+            const mensaje =
+                document.getElementById("mensaje");
+
+
+            /* Confeti inicial */
+
+            lanzarConfetti();
+
+
+            /* Corazones */
+
+            lanzarCorazonesExtra();
+
+
+            /* Desaparece la portada */
+
+            portada.classList.add(
+                "transicion-salida"
+            );
+
+
+            setTimeout(() => {
+
+                portada.style.display = "none";
+
+
+                contenido.classList.add(
+                    "activo"
+                );
+
+
+                iniciarScrollReveal();
+
+
+                /*
+                    Después de la transición
+                    lleva suavemente al mensaje.
+                */
+
+                setTimeout(() => {
+
+                    mensaje.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }, 100);
+
+
+            }, 1000);
+
+        }
+
+
+
+        /* =================================================
+           ANIMACIONES AL HACER SCROLL
+        ================================================= */
+
+        function iniciarScrollReveal() {
+
+            const elementos =
+                document.querySelectorAll(
+                    ".reveal"
+                );
+
+
+            const opciones = {
+
+                threshold: 0.12,
+
+                rootMargin:
+                    "0px 0px -70px 0px"
+
+            };
+
+
+            const observer =
+                new IntersectionObserver(
+                    (entries, obs) => {
+
+                        entries.forEach(
+                            entry => {
+
+                                if (
+                                    entry.isIntersecting
+                                ) {
+
+                                    entry.target.classList
+                                        .add("visible");
+
+
+                                    obs.unobserve(
+                                        entry.target
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    opciones
+                );
+
+
+            elementos.forEach(
+                elemento =>
+                    observer.observe(elemento)
+            );
+
+        }
+
+
+
+        /* =================================================
+           CONFETI
+        ================================================= */
+
+        function lanzarConfetti() {
+
+            if (
+                typeof confetti !==
+                "function"
+            ) return;
+
+
+            confetti({
+
+                particleCount: 120,
+
+                spread: 90,
+
+                startVelocity: 35,
+
+                origin: {
+                    y: .6
+                }
+
+            });
+
+
+            setTimeout(() => {
+
+                confetti({
+
+                    particleCount: 70,
+
+                    spread: 120,
+
+                    origin: {
+                        x: .2,
+                        y: .6
+                    }
+
+                });
+
+            }, 300);
+
+
+            setTimeout(() => {
+
+                confetti({
+
+                    particleCount: 70,
+
+                    spread: 120,
+
+                    origin: {
+                        x: .8,
+                        y: .6
+                    }
+
+                });
+
+            }, 550);
+
+        }
+
+
+
+        /* =================================================
+           CORAZONES EXTRA
+        ================================================= */
+
+        function crearCorazon() {
+
+            const corazon =
+                document.createElement("div");
+
+
+            const simbolos = [
+                "♥",
+                "♡",
+                "💗",
+                "💖"
+            ];
+
+
+            corazon.innerHTML =
+                simbolos[
+                    Math.floor(
+                        Math.random() *
+                        simbolos.length
+                    )
+                ];
+
+
+            corazon.style.position =
+                "fixed";
+
+
+            corazon.style.left =
+                Math.random() * 100 + "vw";
+
+
+            corazon.style.top =
+                "-40px";
+
+
+            corazon.style.fontSize =
+                15 +
+                Math.random() * 28 +
+                "px";
+
+
+            corazon.style.zIndex =
+                "9999";
+
+
+            corazon.style.pointerEvents =
+                "none";
+
+
+            corazon.style.opacity =
+                .4 +
+                Math.random() * .6;
+
+
+            corazon.style.filter =
+                "drop-shadow(0 0 6px rgba(255,100,140,.3))";
+
+
+            document.body.appendChild(
+                corazon
+            );
+
+
+            let posicion = -40;
+
+            let rotacion = 0;
+
+            const velocidad =
+                2 +
+                Math.random() * 3;
+
+
+            const intervalo =
+                setInterval(() => {
+
+                    posicion +=
+                        velocidad;
+
+                    rotacion += 2;
+
+
+                    corazon.style.top =
+                        posicion + "px";
+
+
+                    corazon.style.transform =
+                        `rotate(${rotacion}deg)`;
+
+
+                    if (
+                        posicion >
+                        window.innerHeight
+                    ) {
+
+                        clearInterval(
+                            intervalo
+                        );
+
+                        corazon.remove();
+
+                    }
+
+                }, 25);
+
+        }
+
+
+
+        function lanzarCorazonesExtra() {
+
+            for (
+                let i = 0;
+                i < 45;
+                i++
+            ) {
+
+                setTimeout(() => {
+
+                    crearCorazon();
+
+                }, i * 90);
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           CORAZONES AL CARGAR
+        ================================================= */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                for (
+                    let i = 0;
+                    i < 15;
+                    i++
+                ) {
+
+                    setTimeout(
+                        () => {
+                            crearCorazon();
+                        },
+                        i * 250
+                    );
+
+                }
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
